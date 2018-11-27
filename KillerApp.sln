@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KillerApp", "KillerApp\KillerApp.csproj", "{73DCD3DA-1E1C-4716-8F3D-B47DBACE923A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillerApp", "KillerApp\KillerApp.csproj", "{73DCD3DA-1E1C-4716-8F3D-B47DBACE923A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicLayer", "LogicLayer\LogicLayer.csproj", "{44284926-96FA-493C-923E-B408AAE62274}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{AE80C35F-4C3F-4768-A54D-B435A4A5F2DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{73DCD3DA-1E1C-4716-8F3D-B47DBACE923A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73DCD3DA-1E1C-4716-8F3D-B47DBACE923A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73DCD3DA-1E1C-4716-8F3D-B47DBACE923A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44284926-96FA-493C-923E-B408AAE62274}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44284926-96FA-493C-923E-B408AAE62274}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44284926-96FA-493C-923E-B408AAE62274}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44284926-96FA-493C-923E-B408AAE62274}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE80C35F-4C3F-4768-A54D-B435A4A5F2DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE80C35F-4C3F-4768-A54D-B435A4A5F2DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE80C35F-4C3F-4768-A54D-B435A4A5F2DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE80C35F-4C3F-4768-A54D-B435A4A5F2DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
