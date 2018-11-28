@@ -11,3 +11,4 @@ namespace DataLayer.Interfaces
         bool AddItem(Image item);
     }
 }
+ 
