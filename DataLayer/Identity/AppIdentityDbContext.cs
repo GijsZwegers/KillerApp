@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataLayer.Identity
+namespace KillerApp.DataLayer.Identity
 {
     class AppIdentityDbContext
     {

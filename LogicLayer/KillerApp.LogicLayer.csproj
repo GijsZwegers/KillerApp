@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataLayer\DataLayer.csproj" />
+    <ProjectReference Include="..\DataLayer\KillerApp.DataLayer.csproj" />
   </ItemGroup>
 
 </Project>

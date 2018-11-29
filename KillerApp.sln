@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillerApp", "KillerApp\KillerApp.csproj", "{73DCD3DA-1E1C-4716-8F3D-B47DBACE923A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillerApp.Presentation", "KillerApp\KillerApp.Presentation.csproj", "{73DCD3DA-1E1C-4716-8F3D-B47DBACE923A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicLayer", "LogicLayer\LogicLayer.csproj", "{44284926-96FA-493C-923E-B408AAE62274}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillerApp.LogicLayer", "LogicLayer\KillerApp.LogicLayer.csproj", "{44284926-96FA-493C-923E-B408AAE62274}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{AE80C35F-4C3F-4768-A54D-B435A4A5F2DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KillerApp.DataLayer", "DataLayer\KillerApp.DataLayer.csproj", "{AE80C35F-4C3F-4768-A54D-B435A4A5F2DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

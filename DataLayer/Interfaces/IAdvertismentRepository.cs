@@ -1,7 +1,7 @@
-﻿using DataLayer.Models;
+﻿using KillerApp.DataLayer.Models;
 using System.Collections.Generic;
 
-namespace DataLayer.Interfaces
+namespace KillerApp.DataLayer.Interfaces
 {
     public interface IAdvertismentRepository
     {

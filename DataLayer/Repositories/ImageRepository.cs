@@ -1,8 +1,9 @@
-﻿using DataLayer.Interfaces;
-using DataLayer.Models;
+﻿using DataLayer;
+using KillerApp.DataLayer.Interfaces;
+using KillerApp.DataLayer.Models;
 using System.Collections.Generic;
 
-namespace DataLayer.Repositories
+namespace KillerApp.DataLayer.Repositories
 {
     public class ImageRepository : IImageRepository
     {
@@ -25,11 +26,41 @@ namespace DataLayer.Repositories
 
         public Image GetImageById(int id)
         {
-            return _applicationDatabase.GetImageById(id);
+            throw new System.NotImplementedException();
         }
-        public bool RemoveImage(Image item)
+
+        public bool RemoveImage(Image image)
         {
-            return _applicationDatabase.RemoveItem(item);
+            throw new System.NotImplementedException();
         }
+
+        //public bool AddImage(Image image)
+        //{
+        //    return _applicationDatabase.AddImage(image);
+        //}
+
+        //public List<Image> GetAllImages()
+        //{
+        //    throw new System.NotImplementedException();
+        //}
+
+        //public Image GetImageById(int id)
+        //{
+        //    return _applicationDatabase.GetImageById(id);
+        //}
+        //public bool RemoveImage(Image image)
+        //{
+        //    return _applicationDatabase.RemoveItem(image);
+        //}
+
+        //List<Image> IImageRepository.GetAllImages()
+        //{
+        //    throw new System.NotImplementedException();
+        //}
+
+        //Image IImageRepository.GetImageById(int id)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
     }
 }

@@ -1,5 +1,5 @@
-﻿using DataLayer.Interfaces;
-using DataLayer.Models;
+﻿using KillerApp.DataLayer.Interfaces;
+using KillerApp.DataLayer.Models;
 using System;
 using System.Collections.Generic;
 

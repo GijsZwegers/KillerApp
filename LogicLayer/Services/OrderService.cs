@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using DataLayer.Interfaces;
-using DataLayer.Models;
-using LogicLayer.Interfaces;
+using KillerApp.DataLayer.Interfaces;
+using KillerApp.DataLayer.Models;
+using KillerApp.LogicLayer.Interfaces;
 
-namespace LogicLayer.Services
+namespace KillerApp.LogicLayer.Services
 {
     public class OrderService : IOrderService
     {

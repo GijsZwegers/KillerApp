@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DataLayer.Models
+namespace KillerApp.DataLayer.Models
 {
     public class User
     {

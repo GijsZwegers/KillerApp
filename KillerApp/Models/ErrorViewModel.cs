@@ -1,6 +1,6 @@
 using System;
 
-namespace KillerApp.Models
+namespace KillerApp.Presentation.Models
 {
     public class ErrorViewModel
     {

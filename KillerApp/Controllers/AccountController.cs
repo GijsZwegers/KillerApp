@@ -1,6 +1,6 @@
 ﻿//using Microsoft.eShopWeb.ApplicationCore.Interfaces;
 //using Microsoft.eShopWeb.Infrastructure.Identity;
-using KillerApp.ViewModels.Account;
+using KillerApp.Presentation.ViewModels.Account;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
-namespace KillerApp.Controllers
+namespace KillerApp.Presentation.Controllers
 {
     [Authorize]
     public class AccountController : Controller

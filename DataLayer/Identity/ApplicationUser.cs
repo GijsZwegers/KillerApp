@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Microsoft.eShopWeb.Infrastructure.Identity
+namespace KillerApp.DataLayer.Identity
 {
     public class ApplicationUser : IdentityUser
     {
