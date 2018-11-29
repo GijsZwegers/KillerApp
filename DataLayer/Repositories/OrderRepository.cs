@@ -7,8 +7,8 @@ namespace DataLayer.Repositories
 {
     public class OrderRepository : IOrderRepository
     {
-        private readonly IItemRepository _itemRepository;
-        public OrderRepository(IItemRepository itemRepository)
+        private readonly IImageRepository _itemRepository;
+        public OrderRepository(IImageRepository itemRepository)
         {
             _itemRepository = itemRepository;
         }

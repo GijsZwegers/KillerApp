@@ -1,4 +1,5 @@
 ﻿using DataLayer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,42 +10,44 @@ namespace DataLayer
     /// </summary>
     internal class ApplicationDatabase
     {
-        private const string connectionString = "sdsjda";
-        private List<Image> Items { get; set; }
+        private const string connectionString = "INSERT CONNECTION STRING HERE";
+        private List<Image> Images { get; set; }
 
         internal ApplicationDatabase()
         {
-            Items = new List<Image>
+            Images = new List<Image>
             {
-                new Image { Id = 1, Name = "Tandenborstel", Price = 5.99 },
-                new Image { Id = 2, Name = "Tandpasta", Price = 2.99 },
-                new Image { Id = 3, Name = "Tandenborstelhouder", Price = 15.99 }
+                new Image { Id = 1, Name = "Tandenborstel", Width = 52, Height = 52, ContentType = ".png", Length = 52, InsertDate = DateTime.UtcNow, EditDate = DateTime.UtcNow},
+                new Image { Id = 2, Name = "Tandpasta", Width = 52, Height = 52, ContentType = ".png", Length = 52, InsertDate = DateTime.UtcNow, EditDate = DateTime.UtcNow},
+                new Image { Id = 3, Name = "Tandenborstelhouder", Width = 52, Height = 52, ContentType = ".png", Length = 52, InsertDate = DateTime.UtcNow, EditDate = DateTime.UtcNow}
             };
         }
 
-        //select * from db.items; idk
-        internal List<Image> GetAllItems()
+        //select * from db.images; idk
+        internal List<Image> GetImages()
         {
-            return Items;
+            return Images;
         }
-        internal Image GetItemById(int id)
+        internal Image GetImageById(int id)
         {
-            return Items.Single(item => item.Id.Equals(id));
+            return Images.Single(item => item.Id.Equals(id));
         }
-        internal bool AddItem(Image item)
+
+        internal bool AddImage(Image item)
         {
-            if(Items.Any(itemInItems => itemInItems.Id.Equals(item.Id)))
+            if(Images.Any(itemInItems => itemInItems.Id.Equals(item.Id)))
             {
                 return false;
             }
-            Items.Add(item);
+            Images.Add(item);
             return true;
         }
+
         internal bool RemoveItem(Image item)
         {
-            if (Items.Any(itemInItems => itemInItems.Equals(item)))
+            if (Images.Any(itemInItems => itemInItems.Equals(item)))
             {
-                return Items.Remove(item);
+                return Images.Remove(item);
             }
             return false;
         }

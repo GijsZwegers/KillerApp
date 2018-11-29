@@ -7,12 +7,12 @@ namespace LogicLayer.Services
 {
     public class OrderService : IOrderService
     {
-        private readonly IItemRepository _itemRepository;
+        private readonly IImageRepository _imageRepository;
         private readonly IOrderRepository _orderRepository;
 
-        public OrderService(IItemRepository itemRepository, IOrderRepository orderRepository)
+        public OrderService(IImageRepository imageRepository, IOrderRepository orderRepository)
         {
-            _itemRepository = itemRepository;
+            _imageRepository = imageRepository;
             _orderRepository = orderRepository;
         }
 

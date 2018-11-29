@@ -4,31 +4,30 @@ using System.Collections.Generic;
 
 namespace DataLayer.Repositories
 {
-    public class ItemRepository : IItemRepository
+    public class ImageRepository : IImageRepository
     {
         private readonly ApplicationDatabase _applicationDatabase;
 
-        public ItemRepository()
+        public ImageRepository()
         {
             _applicationDatabase = new ApplicationDatabase();
         }
 
-        public bool AddItem(Image item)
+        public bool AddImage(Image image)
         {
-            return _applicationDatabase.AddItem(item);
+            return _applicationDatabase.AddImage(image);
         }
 
-        public List<Image> GetAllItems()
+        public List<Image> GetAllImages()
         {
-           return _applicationDatabase.GetAllItems();
+            throw new System.NotImplementedException();
         }
 
-        public Image GetItemById(int id)
+        public Image GetImageById(int id)
         {
-            return _applicationDatabase.GetItemById(id);
+            return _applicationDatabase.GetImageById(id);
         }
-
-        public bool RemoveItem(Image item)
+        public bool RemoveImage(Image item)
         {
             return _applicationDatabase.RemoveItem(item);
         }
