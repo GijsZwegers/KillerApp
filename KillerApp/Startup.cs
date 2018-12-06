@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DataLayer.Repositories;
+using KillerApp.DataLayer.Interfaces;
+using KillerApp.DataLayer.Repositories;
+using KillerApp.LogicLayer.Interfaces;
+using KillerApp.LogicLayer.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,6 +36,13 @@ namespace KillerApp.Presentation
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IImageRepository, ImageRepository>();
+
+            services.AddTransient<ILoginService, LoginService>();
+            services.AddTransient<IOrderService, OrderService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

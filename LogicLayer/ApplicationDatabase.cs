@@ -11,7 +11,7 @@ namespace DataLayer
     /// </summary>
     internal class ApplicationDatabase
     {
-        private const string connectionString = "Server=localhost:3306;Database=killerapp;Uid=root;Pwd=;";
+        private const string connectionString = "INSERT CONNECTION STRING HERE";
         private List<Image> Images { get; set; }
 
         internal ApplicationDatabase()

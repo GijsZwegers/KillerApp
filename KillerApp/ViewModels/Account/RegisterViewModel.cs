@@ -5,9 +5,14 @@ namespace KillerApp.Presentation.ViewModels.Account
 {
     public class RegisterViewModel
     {
+        //[Required]
+        //[EmailAddress]
+        //[Display(Name = "Email")]
+        //public string Email { get; set; }
+
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
+        [DataType(DataType.Text), MaxLength(20)]
+        [Display(Name = "UserName")]
         public string Email { get; set; }
 
         [Required]
