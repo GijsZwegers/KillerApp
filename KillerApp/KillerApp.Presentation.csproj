@@ -10,10 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Identity\Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\LogicLayer\KillerApp.LogicLayer.csproj" />
   </ItemGroup>
 

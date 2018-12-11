@@ -29,11 +29,13 @@ namespace KillerApp.LogicLayer.Services
             return false;
         }
 
-        public bool Register(string username, string password, string passwordConfirm)
+        public bool Register(HttpContext httpContext, string username, string password, string passwordConfirm)
         {
             if (password == passwordConfirm && password != "")
             {
                 string hashedpassword = BCrypt.Net.BCrypt.HashPassword(password);
+                bool isRegistered = userRepository.Register(username, hashedpassword);
+                return isRegistered;
             }
 
             return false;

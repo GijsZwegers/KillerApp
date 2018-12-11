@@ -1,6 +1,7 @@
 ﻿using DataLayer;
 using KillerApp.DataLayer.Interfaces;
 using KillerApp.DataLayer.Models;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -38,11 +39,15 @@ namespace KillerApp.DataLayer.Repositories
             
             Dictionary<string, object> pairs = new Dictionary<string, object>
             {
-                { "username", username },
+                { "userName", username },
                 { "passwordhash", hashedPassword }
             };
-            var reader = applicationDatabase.ExecuteProcedureWithValues("VerifyUser", pairs);
-            reader.Read();
+            User user = applicationDatabase.ExecuteProcedureWithValues("VerifyUser", pairs, GetUser);
+            return user;
+        }
+        private User GetUser(MySqlDataReader reader)
+        {
+            
             if (reader.HasRows)
             {
                 return new User
@@ -54,19 +59,18 @@ namespace KillerApp.DataLayer.Repositories
             }
             return default;
         }
-
         public bool Register(string username, string hashedPassword)
         {
             Dictionary<string, object> pairs = new Dictionary<string, object>
             {
                 { "username", username }
             };
-            var reader = applicationDatabase.ExecuteProcedureWithValues("CheckUserNameExists", pairs);
-            reader.Read();
-            if (reader.HasRows)
-            {
-                return false;
-            }
+            //var reader = applicationDatabase.ExecuteProcedureWithValues("CheckUserNameExists", pairs);
+            //reader.Read();
+            //if (reader.HasRows)
+            //{
+            //    return false;
+            //}
 
             return true;
         }

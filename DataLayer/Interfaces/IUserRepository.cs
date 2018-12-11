@@ -8,6 +8,6 @@ namespace KillerApp.DataLayer.Interfaces
     {
         List<User> GetUsers();
         User VerifyUser(string username, string hashedPassword);
-        
+        bool Register(string username, string hashedPassword);
     }
 }

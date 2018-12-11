@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KillerApp.Presentation.Controllers
 {
-    [Authorize]
+    [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
         private readonly ILoginService loginService;
@@ -23,7 +23,7 @@ namespace KillerApp.Presentation.Controllers
             return View();
         }
 
-        [AllowAnonymous]
+        [HttpGet, AllowAnonymous]
         public IActionResult Register()
         {
             return View();
@@ -37,6 +37,19 @@ namespace KillerApp.Presentation.Controllers
             if (ModelState.IsValid)
             {
                 bool isloggedin = loginService.Login(HttpContext, model.UserName, model.Password);
+            }
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
+        {
+            if (ModelState.IsValid)
+            {
+                bool isloggedin = loginService.Register(HttpContext, model.UserName, model.Password, model.ConfirmPassword);
             }
             // If we got this far, something failed, redisplay form
             return View(model);

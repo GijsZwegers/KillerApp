@@ -2,7 +2,9 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+
 
 namespace DataLayer
 {
@@ -11,30 +13,50 @@ namespace DataLayer
     /// </summary>
     internal class ApplicationDatabase
     {
-        private const string connectionString = "Server=localhost:3306;Database=killerapp;Uid=root;Pwd=;";
+        private const string connectionString = "Server=localhost;Port=3306;Database=killerapp;Uid=root;Pwd=;";
         private List<Image> Images { get; set; }
 
-        internal ApplicationDatabase()
+        //internal ApplicationDatabase()
+        //{
+        //    Images = new List<Image>
+        //    {
+        //        new Image { Id = 1, Name = "Tandenborstel", Width = 52, Height = 52, ContentType = ".png", Length = 52, InsertDate = DateTime.UtcNow, EditDate = DateTime.UtcNow},
+        //        new Image { Id = 2, Name = "Tandpasta", Width = 52, Height = 52, ContentType = ".png", Length = 52, InsertDate = DateTime.UtcNow, EditDate = DateTime.UtcNow},
+        //        new Image { Id = 3, Name = "Tandenborstelhouder", Width = 52, Height = 52, ContentType = ".png", Length = 52, InsertDate = DateTime.UtcNow, EditDate = DateTime.UtcNow}
+        //    };
+        //}
+        internal T ExecuteProcedureWithValues<T>(string procedure, Dictionary<string, object> parameters, Func<MySqlDataReader, T> func)
         {
-            Images = new List<Image>
-            {
-                new Image { Id = 1, Name = "Tandenborstel", Width = 52, Height = 52, ContentType = ".png", Length = 52, InsertDate = DateTime.UtcNow, EditDate = DateTime.UtcNow},
-                new Image { Id = 2, Name = "Tandpasta", Width = 52, Height = 52, ContentType = ".png", Length = 52, InsertDate = DateTime.UtcNow, EditDate = DateTime.UtcNow},
-                new Image { Id = 3, Name = "Tandenborstelhouder", Width = 52, Height = 52, ContentType = ".png", Length = 52, InsertDate = DateTime.UtcNow, EditDate = DateTime.UtcNow}
-            };
-        }
-        internal MySqlDataReader ExecuteProcedureWithValues(string procedure, Dictionary<string, object> parameters)
-        {
-            MySqlDataReader mySqlDataReader;
+            T returnObject;
             using (MySqlConnection connection = new MySqlConnection(connectionString))
-            using (MySqlCommand cmd = new MySqlCommand(procedure))
+            using (MySqlCommand cmd = new MySqlCommand())
             {
                 connection.Open();
-                parameters.Select(xd => cmd.Parameters.AddWithValue(xd.Key, xd.Value));
-                mySqlDataReader = cmd.ExecuteReader();
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandText = procedure;
+                cmd.Connection = connection;
+
+                foreach (KeyValuePair<string, object> item in parameters)
+                {
+                    MySqlParameter x = new MySqlParameter(item.Key, item.Value);
+                    x.MySqlDbType = MySqlDbType.VarChar;
+                    
+                    cmd.Parameters.Add(x);
+                }
+                try
+                {
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                        reader.Read();
+                    returnObject = func(reader);
+                }
+                catch (Exception ex)
+                {
+                    Debug.Write(ex.Message);
+                    throw;
+                }
                 connection.Close();
             }
-            return mySqlDataReader;
+            return returnObject;
         }
         internal MySqlDataReader ExecuteProcedure(string procedure)
         {
@@ -42,14 +64,13 @@ namespace DataLayer
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             using (MySqlCommand cmd = new MySqlCommand(procedure))
             {
-                connection.Open();
+                cmd.Connection.Open();
                 mySqlDataReader = cmd.ExecuteReader();
                 connection.Close();
             }
             return mySqlDataReader;
         }
 
-        //select * from db.images; idk
         internal List<Image> GetImages()
         {
             return Images;
@@ -59,21 +80,21 @@ namespace DataLayer
             return Images.Single(item => item.Id.Equals(id));
         }
 
-        internal bool AddImage(Image item)
+        internal bool AddImage(Image image)
         {
-            if(Images.Any(itemInItems => itemInItems.Id.Equals(item.Id)))
+            if(Images.Any(itemInItems => itemInItems.Id.Equals(image.Id)))
             {
                 return false;
             }
-            Images.Add(item);
+            Images.Add(image);
             return true;
         }
 
-        internal bool RemoveItem(Image item)
+        internal bool RemoveImage(Image image)
         {
-            if (Images.Any(itemInItems => itemInItems.Equals(item)))
+            if (Images.Any(itemInItems => itemInItems.Equals(image)))
             {
-                return Images.Remove(item);
+                return Images.Remove(image);
             }
             return false;
         }
