@@ -5,12 +5,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="gruntfile.js" />
+    <Content Include="sass\base\_base.scss" />
+    <Content Include="sass\main.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontAwesome" Version="4.7.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LogicLayer\KillerApp.LogicLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="sass\components\" />
+    <Folder Include="sass\layout\" />
+    <Folder Include="sass\pages\" />
   </ItemGroup>
 
 </Project>

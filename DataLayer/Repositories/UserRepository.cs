@@ -34,16 +34,20 @@ namespace KillerApp.DataLayer.Repositories
             return users;
         }
 
-        public User VerifyUser(string username, string hashedPassword)
+        public User VerifyUser(string username, string password)
         {
             
             Dictionary<string, object> pairs = new Dictionary<string, object>
             {
-                { "userName", username },
-                { "passwordhash", hashedPassword }
+                { "userName", username }
             };
             User user = applicationDatabase.ExecuteProcedureWithValues("VerifyUser", pairs, GetUser);
-            return user;
+
+            if (BCrypt.Net.BCrypt.Verify(password, user.Password))
+            {
+                return user;
+            }
+            return null;
         }
         private User GetUser(MySqlDataReader reader)
         {
@@ -54,7 +58,7 @@ namespace KillerApp.DataLayer.Repositories
                 {
                     id = (int)reader["Id"],
                     Name = (string)reader["UserName"],
-                    Password = (string)reader["HashesPassword"]
+                    Password = (string)reader["HashedPassword"]
                 };
             }
             return default;
@@ -63,16 +67,32 @@ namespace KillerApp.DataLayer.Repositories
         {
             Dictionary<string, object> pairs = new Dictionary<string, object>
             {
-                { "username", username }
+                { "name", username }    
             };
-            //var reader = applicationDatabase.ExecuteProcedureWithValues("CheckUserNameExists", pairs);
-            //reader.Read();
-            //if (reader.HasRows)
-            //{
-            //    return false;
-            //}
+            if (applicationDatabase.ExecuteProcedureWithValues("CheckUserName", pairs, CheckBool))
+            {
+                return false;
+            }
+            var success = applicationDatabase.ExecuteProcedureWithValues("RegisterUser", pairs, CheckBool);
 
             return true;
+        }
+
+        private bool CheckBool(MySqlDataReader reader)
+        {
+            if (reader.HasRows)
+            {
+                var test = reader["bool"];
+                if (Convert.ToBoolean(reader["bool"]) == true)
+                {
+                    return true;
+                }
+                else if (Convert.ToBoolean(reader["bool"]) == false)
+                {
+                    return false;
+                }
+            }
+            return false;
         }
     }
 }

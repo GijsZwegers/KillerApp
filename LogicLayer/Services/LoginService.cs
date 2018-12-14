@@ -18,8 +18,7 @@ namespace KillerApp.LogicLayer.Services
 
         public bool Login(HttpContext httpContext, string username, string password)
         {
-            string hashedpassword = BCrypt.Net.BCrypt.HashPassword(password);
-            User user = userRepository.VerifyUser(username, hashedpassword);
+            User user = userRepository.VerifyUser(username, password);
 
             if (!user.Equals(default))
             {

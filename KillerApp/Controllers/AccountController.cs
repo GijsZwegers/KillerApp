@@ -4,6 +4,7 @@ using KillerApp.LogicLayer.Interfaces;
 using KillerApp.Presentation.ViewModels.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace KillerApp.Presentation.Controllers
@@ -18,6 +19,13 @@ namespace KillerApp.Presentation.Controllers
             this.loginService = loginService;
         }
 
+        [Route("Login"), Authorize]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [Route(""), Route("Index")]
         public IActionResult Index()
         {
             return View();
@@ -49,30 +57,12 @@ namespace KillerApp.Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                bool isloggedin = loginService.Register(HttpContext, model.UserName, model.Password, model.ConfirmPassword);
+                bool isregistred = loginService.Register(HttpContext, model.UserName, model.Password, model.ConfirmPassword);
             }
+            var errors = ModelState.Where(x => x.Value.Errors.Any())
+                .Select(x => new { x.Key, x.Value.Errors });
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
-        //[HttpPost]
-        //[AllowAnonymous]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-        //        var result = await _userManager.CreateAsync(user, model.Password);
-        //        if (result.Succeeded)
-        //        {
-        //            await _signInManager.SignInAsync(user, isPersistent: false);
-        //            return RedirectToLocal(returnUrl);
-        //        }
-        //        AddErrors(result);
-        //    }
-        //    // If we got this far, something failed, redisplay form
-        //    return View(model);
-        //}
     }
 }
