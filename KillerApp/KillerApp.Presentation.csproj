@@ -5,7 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="gruntfile.js" />
+    <_ContentIncludedByDefault Remove="gruntfile.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="sass\base\_base.scss" />
     <Content Include="sass\main.scss" />
   </ItemGroup>

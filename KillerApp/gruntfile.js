@@ -1,4 +1,4 @@
-/// <binding />
+/// <binding BeforeBuild='default' />
 module.exports = function (grunt) {
     'use strict';
 
@@ -7,21 +7,14 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         // Sass
-        sass: {
-            options: {
-                sourceMap: true, // Create source map
-                outputStyle: 'compressed' // Minify output
-            },
-            dist: {
-                files: [
-                    {
-                        expand: true, // Recursive
-                        cwd: "sass", // The startup directory
-                        src: ["main.scss"], // Source file
-                        dest: "wwwroot/css", // Destination
-                        ext: ".css" // File extension
-                    }
-                ]
+        sass: {                              // Task
+			ist: {                            // Target
+			    options: {                       // Target options
+                    style: 'expanded'
+			    },
+			        files: {                         // Dictionary of files
+				    'wwwroot/css/main.css': 'Sass/main.scss',       // 'destination': 'source'
+			    }
             }
         }
     });
